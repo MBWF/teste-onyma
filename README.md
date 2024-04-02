@@ -1,51 +1,68 @@
-# Desafio Desenvolvedor Front-end Pleno - Onyma
+# Cadastro de Funcionários para Empresas de RH
 
-Neste desafio você deverá construir uma interface de cadastro de funcionários para empresas de RH.
+Este projeto consiste em uma interface de cadastro de funcionários para empresas de Recursos Humanos. A aplicação permite que os usuários cadastrem novos funcionários, escolhendo em qual empresa o funcionário será inserido, e também possibilita a visualização e edição dos dados dos funcionários cadastrados.
 
-## Contexto
+## Funcionalidades
 
-Neste cenário proposto, a área de RH de empresas clientes utilizam de nossa interface para cadastrar funcionários que poderão ou não realizar exames ocupacionais.
+1. Cadastro de novos funcionários com nome, CPF, RG, data de nascimento, email, telefone, endereço, setor e cargo.
+2. Validação dos campos obrigatórios.
 
-A interface deve permitir que o usuário escolha em qual das empresas o novo funcionário será inserido, sendo que um funcionário não pode estar ativo em duas empresas ao mesmo tempo.
+3. Verificação para evitar que dois funcionários tenham o mesmo CPF, inclusive em empresas diferentes.
 
-Você desenvolverá uma página única que mostre a lista de usuários de cada empresa separadamente, permitindo que os dados sejam alterados ou excluídos, além de um modal de form que permita o cadastro de novos funcionários.
+4. Captura automática do endereço do funcionário com Google Maps.
+5. Listagem dos funcionários cadastrados por empresa.
+6. Inativação de um funcionário em determinada empresa.
+7. Edição dos dados de um funcionário.
+8. Alteração da ordem dos cards por meio de drag and drop.
 
-## Observações
-- Os dados das empresas e funcionários para listagem e filtragem podem utilizar _mocks_ ou uma fake API *(ex: json-server)*, não é necessário desenvolver uma API para o desafio.
+## Tecnologias Utilizadas
+- As principais tecnologias utilizadas no desenvolvimento do projeto foram:
 
+1. React
+2. Next.js
+3. TypeScript
+4. React Hook Form + Zod
+5. Google Maps Api
+6. Json-server
+7. React-dnd
+- Entre várias outras para criar outras funcionalidades.
 
-## Requisitos
+## Instalação e Execução
 
-Você deve criar um serviço com os seguintes requisitos:
+Clone o repositório:
+```bash
+git clone https://github.com/MBWF/teste-onyma.git
+```
 
-1. Requisitos gerais
-   - A aplicação deve ser desenvolvida utilizando NextJS
-   - O projeto deve ter um README.md com todas as instruções sobre como executar e testar o projeto
-   - O projeto deve utilizar Git como ferramenta de controle de versão
-   - *Possuir testes automatizados é um diferencial*
-   - *Estratégias de SEO são um diferencial*
-1. Requisitos da página
-    1. Cadastro de funcionários
-        - Deve ser possível cadastrar novos funcionários para a empresa.
-       - Cada funcionário deve ter nome, CPF, RG, data de nascimento, email, telefone, endereço, setor e cargo.
-        - Todos os campos são obrigatórios, exceto email e telefone.
-        - É obrigatório ter um email OU um telefone.
-        - Não pode haver dois funcionários com o mesmo CPF (inclusive em empresas diferentes)
-        - O funcionário não pode estar **ativo** em duas empresas
-        - O endereço do funcionário deve ser capturado automaticamente *(ex: latitude/longitude do browser + Geocoding API)*
-        - *Cadastro em lote/batch [adicional]*
-    2. Lista dos funcionários
-        - A página deve conter a lista dos funcionários cadastrados.
-        - Deve ser possível inativar um funcionário em determinada empresa (o registro continua, mas com status inativo).
-        - Deve ser possível alterar um funcionário ao clicar no card listado.
-        - *Alterar a ordem dos cards (drag and drop) [adicional]*
+Instale todas as dependências do projeto:
+```bash
+cd teste-onyma
+yarn install
+```
 
+Adicione a variáveis de ambiente para a api do Google Maps no arquivo .env.local:
+-  Sei que não é recomendado deixar a chave de API exposta em um repositório público, mas para fins de teste, deixarei a minha da API do Google Maps para facilitar a execução do projeto.
+```bash
+NEXT_PUBLIC_GOOGLE_API_KEY="AIzaSyCLozxCUYPp5qYSP8atSFq_pZoymCoyrlk"
+```
 
-## Avaliação
+Inicie PRIMEIRO o json-server para simular a API que irá atuar na porta localhost:3000:
+```bash
+yarn json-server db.json
+```
 
-1. O teste deve ser clonado em seu repositório do Github e, após finalizado, a URL do repositório deverá ser enviada para o contato que lhe enviou o teste
-2. Uma breve explicação das decisões tomadas deverá ser enviada para nós, da forma que for acordado entre você e quem lhe enviou o desafio.
-3. A avaliação ocorrerá com base na arquitetura, design e qualidade do código, entendimento das regras de negócio, tolerância a falhas e o quão preparado esse serviço estaria para ser rodado em produção.
-4. Existem algumas funcionalidades adicionais. Apesar de não serem obrigatórias, terão peso considerável na avaliação.
-4. Achamos que entre **5 a 7 dias** é tempo suficiente para a finalização, mas caso sua disponibilidade exija mais tempo, avise a gente com, pelo menos, 1 dia de antecedência do prazo final.
-5. Boa sorte.
+Inicie o projeto que irá atuar na porta localhost:3001:
+```bash
+yarn dev
+```
+
+Para iniciar os testes E2E, execute o seguinte comando:
+```bash
+yarn cypress open
+```
+
+## Considerações Finais
+
+O projeto foi desenvolvido com o intuito de demonstrar as habilidades do desenvolvedor em relação ao desenvolvimento de aplicações web utilizando React, Next.js e TypeScript. A aplicação foi desenvolvida com base nas funcionalidades solicitadas e também com algumas funcionalidades extras que foram implementadas para enriquecer a experiência do usuário.
+
+Feito com ❤️ por Márcio Filho
