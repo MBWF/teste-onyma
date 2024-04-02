@@ -1,0 +1,67 @@
+{
+  "companies": [
+    {
+      "id": "bencorp",
+      "name": "Valor ilimitado ltda.",
+      "employees": [
+        {
+          "name": "Márcio",
+          "cpf": "10610361469",
+          "rg": "3856294",
+          "birthdate": "2000-11-23",
+          "email": "marciofilho@pecege.com",
+          "phone_number": "",
+          "address": "R. Dr. Antônio Sá, 845 - Centro, Campina Grande - PB, 58400-227, Brasil",
+          "area": "asdasd",
+          "role": "asdasd",
+          "id": "52",
+          "status": true
+        },
+        {
+          "name": "Sebastiao G B R",
+          "cpf": "10610361462",
+          "rg": "3856294",
+          "birthdate": "2000-11-23",
+          "email": "sebastiaogustavoramos@delfrateinfo.com.br",
+          "phone_number": "839996366777",
+          "address": "R. Peregrino de Carvalho, 105B - Centro, Campina Grande - PB, 58400-227, Brasil",
+          "area": "asdasd",
+          "role": "asdasd",
+          "id": "20",
+          "status": true
+        },
+        {
+          "name": "Qualquer pessoa",
+          "cpf": "106.103.614-66",
+          "rg": "3856294",
+          "birthdate": "2222-11-23",
+          "email": "",
+          "phone_number": "(12) 31231-2312",
+          "address": "R. Peregrino de Carvalho, 105B - Centro, Campina Grande - PB, 58400-227, Brasil",
+          "area": "asdasd",
+          "role": "asdasd",
+          "id": "44"
+        }
+      ]
+    },
+    {
+      "id": "onyma",
+      "name": "Lehal company inc.",
+      "employees": []
+    }
+  ],
+  "employees": [
+    {
+      "id": "c479",
+      "name": "João da Silva",
+      "cpf": "123.456.789-00",
+      "rg": "1234567",
+      "birthdate": "01/01/1990",
+      "email": "joao@example.com",
+      "phone_number": "(00) 12345-6789",
+      "address": "Rua Exemplo, 123",
+      "area": "RH",
+      "role": "Analista de Recursos Humanos"
+    }
+  ]
+}
