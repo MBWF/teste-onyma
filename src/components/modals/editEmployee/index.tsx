@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button, Text } from "../../ui";
 import { CustomModal } from "../../ui/customModal";
 
@@ -12,6 +12,7 @@ import { Employee } from "../../../types/employee";
 import { Input } from "../../ui/input";
 import { AddressContainer, ModalContent, StyledForm } from "./styles";
 import { FormValues, editEmployeeSchema } from "./validations";
+import { cpfMask, telMask } from "../../../utils/inputMasks";
 
 interface EditEmployeeModalProps {
   isOpen: boolean;
@@ -36,6 +37,7 @@ export const EditEmployeeModal = ({
     formState: { errors },
     reset,
     setValue,
+    control,
   } = useForm<FormValues>({
     resolver: zodResolver(editEmployeeSchema),
   });
@@ -113,13 +115,21 @@ export const EditEmployeeModal = ({
                 defaultValue={employee.name}
               />
 
-              <Input
-                id="cpf"
-                label="CPF:"
-                type="text"
-                hasErrorMessage={errors.cpf?.message}
+              <Controller
+                name="cpf"
+                control={control}
                 defaultValue={employee.cpf}
-                {...register("cpf")}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="CPF:"
+                    hasErrorMessage={errors.cpf?.message}
+                    type="text"
+                    onChange={(e) => {
+                      field.onChange(cpfMask(e.target.value));
+                    }}
+                  />
+                )}
               />
 
               <Input
@@ -148,12 +158,21 @@ export const EditEmployeeModal = ({
             </section>
 
             <section>
-              <Input
-                label="Telefone:"
-                type="text"
-                hasErrorMessage={errors.phone_number?.message}
+              <Controller
+                name="phone_number"
+                control={control}
                 defaultValue={employee.phone_number}
-                {...register("phone_number")}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Telefone:"
+                    hasErrorMessage={errors.phone_number?.message}
+                    type="text"
+                    onChange={(e) => {
+                      field.onChange(telMask(e.target.value));
+                    }}
+                  />
+                )}
               />
               <AddressContainer>
                 <Input

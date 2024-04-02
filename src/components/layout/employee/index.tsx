@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import { changeEmployeeStatus, deleteEmployee } from "../../../http/employee";
 import { api } from "../../../services/api";
@@ -9,6 +9,8 @@ import { EditEmployeeModal } from "../../modals/editEmployee";
 import { VisualizationEmployeeModal } from "../../modals/employeeVisualization";
 import { NotFoundEmployee } from "../../notFound";
 import { Container } from "./styles";
+
+import update from "immutability-helper";
 
 interface EmployeeContainerProps {
   setCurrentCompany: Dispatch<SetStateAction<Company>>;
@@ -66,6 +68,18 @@ export function EmployeeContainer({
     }
   };
 
+  const moveCard = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      setCurrentCompany((prevCompany: Company) => {
+        const updatedEmployees = [...prevCompany.employees];
+        const [removedEmployee] = updatedEmployees.splice(dragIndex, 1);
+        updatedEmployees.splice(hoverIndex, 0, removedEmployee);
+        return { ...prevCompany, employees: updatedEmployees };
+      });
+    },
+    [setCurrentCompany]
+  );
+
   return (
     <Container>
       {currentEmployee && (
@@ -96,9 +110,11 @@ export function EmployeeContainer({
       {employees?.length === 0 ? (
         <NotFoundEmployee />
       ) : (
-        employees?.map((employee) => (
+        employees?.map((employee, index) => (
           <Card
             key={employee.id}
+            index={index}
+            moveCard={moveCard}
             employee={employee}
             onVisualize={() => {
               setCurrentEmployee(employee);

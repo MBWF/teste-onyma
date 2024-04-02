@@ -1,18 +1,17 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyle from "../styles/GlobalStyle";
-
-const queryClient = new QueryClient();
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
       <ToastContainer />
-      <QueryClientProvider client={queryClient}>
+      <DndProvider backend={HTML5Backend}>
         <Component {...pageProps} />
-      </QueryClientProvider>
+      </DndProvider>
     </>
   );
 }

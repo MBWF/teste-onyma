@@ -32,8 +32,12 @@ export const editEmployeeSchema = z
   })
   .refine(
     (data) => {
-      const { email, phone_number } = data;
-      return (email && !phone_number) || (!email && phone_number);
+       const { email, phone_number } = data;
+       return (
+         (email && !phone_number) ||
+         (!email && phone_number) ||
+         (email && phone_number)
+       );
     },
     {
       message: "É obrigatório preencher o campo Email ou Telefone",

@@ -55,5 +55,10 @@ export const WrapperInfo = styled.div`
   p {
     font-size: 1rem;
     color: ${colors.darkBlue};
+
+    white-space: nowrap;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
